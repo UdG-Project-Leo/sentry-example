@@ -10,28 +10,35 @@
     <button id="hello">Hola</button>
     <button id="error">Error</button>
     <div id="output"></div>
-    <script src="https://browser.sentry-cdn.com/4.0.5/bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://browser.sentry-cdn.com/6.17.4/bundle.min.js"
+        integrity="sha384-b8AsyZZuCfveCM8XQGBncVPihJcaG//cLVfziPjfE1RLhc++ZJ8x3BIS0Izv9Iey" crossorigin="anonymous">
+        </script>
     <script>
         (function () {
             'use strict';
             var RELEASE = '0.1.0';
+
             Sentry.init({
-                dsn: 'https://b5bf359072254626aba8e64368e77b7d@sentry.io/1289664',
-                release: RELEASE,
+                dsn: "https://0943d4809ce740198d7f03fa411681a5@o1135005.ingest.sentry.io/6183529"
             });
+
             var helloEl = document.getElementById('hello');
             var errorEl = document.getElementById('error');
             var outputEl = document.getElementById('output');
+
             helloEl.addEventListener('click', handleHelloClick);
             errorEl.addEventListener('click', handleErrorClick);
+
             function handleHelloClick() {
                 outputEl.innerHTML = 'Hello World';
+
                 try {
                     throw new Error('Caught');
                 } catch (err) {
                     Sentry.captureException(err);
                 }
             }
+
             function handleErrorClick() {
                 throw new Error('Uncaught');
             }
